@@ -37,6 +37,7 @@ def pull_request_merge(repo, payload):
     if(pull_request.is_merged()):
         response = f"Thanks for contributing to this project !"
         pull_request.create_issue_comment(f"{response}")
+        repo.get_git_ref(payload['pull_request']['head']['ref']).delete()
 
 @app.route("/", methods=['POST'])
 def bot():
